@@ -42,8 +42,11 @@ parse_dir(Dir) ->
 parse_file(File) ->
     error_logger:info_msg("Parsing File: ~p~n", [File]),
     {ok, FD} = file:open(File, [read]),
-    parse_lines(file:read_line(FD), FD, []).
-
+    try
+        parse_lines(file:read_line(FD), FD, [])
+    catch
+        _:_ -> []
+    end.
 
 
 
