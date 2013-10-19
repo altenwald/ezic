@@ -40,7 +40,7 @@ parse_dir(Dir) ->
 
 % returns a list of tzdata records from file
 parse_file(File) ->
-    %% error_logger:info_msg("Parsing File: ~p~n", [File]),
+    error_logger:info_msg("Parsing File: ~p~n", [File]),
     {ok, FD} = file:open(File, [read]),
     parse_lines(file:read_line(FD), FD, []).
 
