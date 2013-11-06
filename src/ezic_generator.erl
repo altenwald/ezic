@@ -22,25 +22,20 @@ generate_links([#link{from = From, to = To} | Rest], MapFile) ->
   file:write(MapFile, io_lib:format("find(~p) -> find(~p);\n", [To, From])),
   generate_links(Rest, MapFile).
 
-generate_zones([], _, Files) ->
-  lists:foreach(fun({_, File}) ->
-    file:write(File, "]."),
-    file:close(File)
+generate_zones([], MapFile, Files) ->
+  lists:foreach(fun({ZoneName, Content}) ->
+    create_file(ZoneName, Content, MapFile)
   end, Files);
 
 generate_zones([FlatZone = #flatzone{tzname = Name} | Rest], MapFile, Files) ->
-  {File, NewFiles} = case orddict:find(Name, Files) of
-    error ->
-      IO = create_file(Name, MapFile),
-      {IO, orddict:store(Name, IO, Files)};
-    {ok, IO} ->
-      file:write(IO, ",\n"),
-      {IO, Files}
+  Files2 = case orddict:is_key(Name, Files) of
+    true -> orddict:append(Name, ",\n", Files);
+    false -> Files
   end,
-  file:write(File, io_lib:format("~1000p", [FlatZone])),
-  generate_zones(Rest, MapFile, NewFiles).
+  Files3 = orddict:append(Name, io_lib:format("~1000p", [FlatZone]), Files2),
+  generate_zones(Rest, MapFile, Files3).
 
-create_file(ZoneName, MapFile) ->
+create_file(ZoneName, Content, MapFile) ->
   io:format("Creating file for zone ~p~n", [ZoneName]),
   ModuleName = "ezic_zone_" ++ re:replace(string:to_lower(ZoneName), "/", "_", [global, {return, list}]),
   FileName = "zones" ++ "/" ++ ModuleName ++ ".erl",
@@ -49,4 +44,6 @@ create_file(ZoneName, MapFile) ->
   file:write(File, "-export([flatzones/0]).\n"),
   file:write(File, "flatzones() ->\n["),
   file:write(MapFile, io_lib:format("find(~p) -> ~p;\n", [ZoneName, list_to_atom(ModuleName)])),
-  File.
+  file:write(File, Content),
+  file:write(File, "]."),
+  file:close(File).
