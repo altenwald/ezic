@@ -22,7 +22,7 @@ generate_links([#link{from = From, to = To} | Rest], MapFile) ->
   file:write(MapFile, io_lib:format("find(~p) -> find(~p);\n", [To, From])),
   generate_links(Rest, MapFile).
 
-generate_zones([], MapFile, Files) ->
+generate_zones([], _, Files) ->
   lists:foreach(fun({_, File}) ->
     file:write(File, "]."),
     file:close(File)
