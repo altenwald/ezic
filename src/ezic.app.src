@@ -2,9 +2,17 @@
  [
   {registered, []},
   {vsn, "0.2.0"},
+  {description, "A set of Erlang utilities for the Olson timezone database files"},
   {applications, [
                   kernel,
                   stdlib
                  ]},
-  {env, [{tzdata_dir, "priv/tzdata"}]}
+  {env, [{tzdata_dir, "priv/tzdata"}]},
+  {maintainers, ["Manuel Rubio"]},
+  {licenses, ["Public Domain"]},
+  {links, [
+    {"Github", "https://github.com/altenwald/ezic"}
+  ]},
+  {exclude_files, []},
+  {include_files, ["Makefile"]}
  ]}.
