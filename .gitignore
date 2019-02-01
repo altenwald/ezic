@@ -8,3 +8,4 @@ tzdata/
 db/
 out
 zones
+_build/

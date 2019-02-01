@@ -3,6 +3,7 @@
   {description, ""},
   {registered, []},
   {vsn, "0.2.0"},
+  {description, "A set of Erlang utilities for the Olson timezone database files"},
   {applications, [
                   kernel,
                   stdlib
@@ -16,5 +17,12 @@
                            "etcetera","europe","leapseconds",
                            "northamerica","pacificnew",
                            "southamerica","systemv"]}
-        ]}
+        ]},
+  {maintainers, ["Manuel Rubio"]},
+  {licenses, ["Public Domain"]},
+  {links, [
+    {"Github", "https://github.com/altenwald/ezic"}
+  ]},
+  {exclude_files, ["priv/tzdata"]},
+  {include_files, ["priv/Makefile"]}
  ]}.
