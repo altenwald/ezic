@@ -1,28 +1,19 @@
 {application, ezic,
- [
-  {description, ""},
-  {registered, []},
-  {vsn, "0.2.0"},
-  {description, "A set of Erlang utilities for the Olson timezone database files"},
-  {applications, [
-                  kernel,
-                  stdlib
-                 ]},
-  {mod, {ezic_app, ezic_db_ets}},
-  {env, [
-         {ets_db, "./ezic_timezones.ets"},
-         {maxyear, 2050},
-         {relevant_files, ["africa","antarctica","asia",
-                           "australasia","backward","backzone",
-                           "etcetera","europe","leapseconds",
-                           "northamerica","pacificnew",
-                           "southamerica","systemv"]}
-        ]},
-  {maintainers, ["Manuel Rubio"]},
-  {licenses, ["Public Domain"]},
-  {links, [
-    {"Github", "https://github.com/altenwald/ezic"}
-  ]},
-  {exclude_files, ["priv/tzdata"]},
-  {include_files, ["priv/Makefile"]}
- ]}.
+              [{registered, []},
+               {vsn, "0.2.1"},
+               {description, "A set of Erlang utilities for the Olson timezone database files"},
+               {applications, [kernel, stdlib]},
+               {mod, {ezic_app, ezic_db_ets}},
+               {env, [{ets_db, "./ezic_timezones.ets"},
+                      {maxyear, 2050},
+                      {relevant_files, ["africa","antarctica","asia",
+                                        "australasia","backward","backzone",
+                                        "etcetera","europe","leapseconds",
+                                        "northamerica","pacificnew",
+                                        "southamerica","systemv"]}
+                ]},
+                {maintainers, ["Manuel Rubio"]},
+                {licenses, ["Public Domain"]},
+                {links, [{"Github", "https://github.com/bragful/ezic"}]},
+                {exclude_files, ["priv/tzdata"]},
+                {include_files, ["priv/Makefile"]}]}.
