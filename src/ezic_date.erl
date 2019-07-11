@@ -281,9 +281,19 @@ last_day_of(Day, Y,M) ->
 % returns a date tuple {Y,M,D} representing the first available date, given the filter
 % same for all timezones
 first_day_limited(Day, {geq, N}, Y,M) ->
-    next_day(Day, {Y,M,N});
+    try
+        next_day(Day, {Y,M,N})
+    catch
+        error:no_next_day ->
+            next_day(Day, {Y,M+1,1})
+    end;
 first_day_limited(Day, {leq, N}, Y,M) ->
-    previous_day(Day, {Y,M,N}).
+    try
+        previous_day(Day, {Y,M,N})
+    catch
+        error:no_previous_day ->
+            previous_day(Day, {Y, M-1, calendar:last_day_of_the_month(Y, M-1)})
+    end.
 
 
 
