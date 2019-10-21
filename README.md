@@ -76,6 +76,8 @@ A big thanks to ezic's contributors:
  * [jrgdiz](https://github.com/jrgdiz)
  * [arkdro](https://github.com/arkdro)
  * [amasyura](https://github.com/amasyura)
+ * [manuel-rubio](https://github.com/manuel-rubio)
+ * [danielribes](https://github.com/danielribes)
 
 The decision to release this into the public domain was inspired by the (anti-) license of the [SQLite project](http://www.sqlite.org/copyright.html).
 

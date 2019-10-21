@@ -1,6 +1,6 @@
 {application,ezic,
              [{registered,[]},
-              {vsn,"0.2.1"},
+              {vsn,"0.2.2"},
               {description,"A set of Erlang utilities for the Olson timezone database files"},
               {applications,[kernel,stdlib]},
               {env,[{tzdata_dir,"priv/tzdata"}]},
