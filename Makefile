@@ -1,6 +1,6 @@
 
 zones:
-	wget "http://www.iana.org/time-zones/repository/tzdata-latest.tar.gz"
+	wget "https://data.iana.org/time-zones/tzdata-latest.tar.gz"
 	mkdir -p priv/tzdata
 	tar -xvzf tzdata-latest.tar.gz -C priv/tzdata
 	rm tzdata-latest.tar.gz
